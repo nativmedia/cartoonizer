@@ -1,0 +1,7 @@
+{
+  "name": "Cartoonizer Apps",
+  "description": "Transform your photos into minimal, flat-colored cartoons using Gemini 2.5 Flash.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}

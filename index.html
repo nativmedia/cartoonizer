@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta name="theme-color" content="#FDFCF6" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Cartoonizer" />
+    <meta name="description" content="Transform your photos into minimal, flat-colored cartoons using AI." />
+    
+    <title>Cartoonizer</title>
+    
+    <link rel="icon" href="data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='100' height='100' rx='28' fill='%239D6B53'/%3E%3Cg fill='%23FFFFFF'%3E%3Cellipse cx='32' cy='38' rx='9' ry='21' transform='rotate(-12 32 38)' /%3E%3Cellipse cx='68' cy='38' rx='9' ry='21' transform='rotate(12 68 38)' /%3E%3Cellipse cx='50' cy='62' rx='30' ry='20' /%3E%3C/g%3E%3C/svg%3E">
+    <!-- PWA Icons placeholder - You should add real PNG files to your public folder -->
+    <link rel="apple-touch-icon" href="pwa-192x192.png">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        /* Professional easing curves (Apple-style spring) */
+        --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+        --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+        --ease-smooth: cubic-bezier(0.25, 1, 0.5, 1);
+      }
+
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow: hidden; /* Prevent native scroll on body */
+        overscroll-behavior-y: none; /* Prevent rubber-banding/pull-to-refresh on mobile */
+        -webkit-tap-highlight-color: transparent;
+        background-color: #EAEAE5;
+        font-family: 'Inter', sans-serif;
+      }
+
+      #root {
+        height: 100%;
+        width: 100%;
+      }
+
+      @media (max-width: 640px) {
+        body {
+          background-color: #FDFCF6; /* Match card bg on mobile */
+        }
+      }
+
+      /* Utility classes */
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      
+      /* GPU Accelerated Animations */
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translate3d(0, 10px, 0); }
+        to { opacity: 1; transform: translate3d(0, 0, 0); }
+      }
+      .animate-fadeIn {
+        animation: fadeIn 0.6s var(--ease-out-expo) forwards;
+        will-change: opacity, transform;
+      }
+
+      @keyframes pulse-subtle {
+        0%, 100% { opacity: 0.4; transform: scale(1); }
+        50% { opacity: 0.3; transform: scale(1.02); }
+      }
+      .animate-pulse-subtle {
+        animation: pulse-subtle 2s infinite ease-in-out;
+      }
+
+      /* Touch adjustments */
+      .touch-none {
+        touch-action: none;
+      }
+      
+      /* Safe area padding for iPhone Notch/Home Indicator */
+      .pb-safe {
+        padding-bottom: env(safe-area-inset-bottom);
+      }
+      .pt-safe {
+        padding-top: env(safe-area-inset-top);
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "firebase/": "https://aistudiocdn.com/firebase@^12.6.0/",
+    "heic2any": "https://aistudiocdn.com/heic2any@^0.0.4",
+    "path": "https://aistudiocdn.com/path@^0.12.7",
+    "vite": "https://aistudiocdn.com/vite@^7.2.6",
+    "@vitejs/plugin-react": "https://aistudiocdn.com/@vitejs/plugin-react@^5.1.1",
+    "vite-plugin-pwa": "https://aistudiocdn.com/vite-plugin-pwa@^1.2.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
